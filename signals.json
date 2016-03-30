@@ -1,0 +1,31 @@
+"Signals": [{
+  "AttributeName": "TP Online",
+  "AttributeID": "8c19455f-916e-4118-9d73-66c1fdd105cb",
+  "AttributeType": 2,
+  "JoinNumber": 50,
+  "LogicalOperator": 4
+}, {
+  "AttributeName": "IPTV Video",
+  "AttributeID": "IPTV Video",
+  "AttributeType": 2,
+  "JoinNumber": 59,
+  "LogicalOperator": 4
+}, {
+  "AttributeName": "Disp Err",
+  "AttributeID": "Disp Err",
+  "AttributeType": 2,
+  "JoinNumber": 56,
+  "LogicalOperator": 4
+}, {
+  "AttributeName": "System Power",
+  "AttributeID": "SYSTEM_POWER",
+  "AttributeType": 2,
+  "JoinNumber": 1,
+  "LogicalOperator": 4
+}, {
+  "AttributeName": "DISPLAY_POWER",
+  "AttributeID": "Display Power",
+  "AttributeType": 2,
+  "JoinNumber": -1,
+  "LogicalOperator": 4
+}]
