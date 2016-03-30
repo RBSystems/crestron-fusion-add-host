@@ -5,16 +5,10 @@
   "JoinNumber": 58,
   "LogicalOperator": 4
 }, {
-  "AttributeName": "IPTV Video",
-  "AttributeID": "IPTV Video",
+  "AttributeName": "IptvVid",
+  "AttributeID": "IptvVid",
   "AttributeType": 2,
-  "JoinNumber": 59,
-  "LogicalOperator": 4
-}, {
-  "AttributeName": "Disp Err",
-  "AttributeID": "Disp Err",
-  "AttributeType": 2,
-  "JoinNumber": 56,
+  "JoinNumber": 55,
   "LogicalOperator": 4
 }, {
   "AttributeName": "System Power",
@@ -23,8 +17,8 @@
   "JoinNumber": 3,
   "LogicalOperator": 4
 }, {
-  "AttributeName": "DISPLAY_POWER",
-  "AttributeID": "Display Power",
+  "AttributeName": "Display Power",
+  "AttributeID": "DISPLAY_POWER",
   "AttributeType": 2,
   "JoinNumber": 5,
   "LogicalOperator": 4

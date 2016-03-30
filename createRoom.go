@@ -163,9 +163,9 @@ func sendRoom(room RoomInfo, config Config) {
 	}
 
 	if resp.StatusCode == 200 {
-		fmt.Printf("Success!")
+		fmt.Printf("Success!\n")
 	} else {
-		fmt.Println("ERROR. Status: ", resp.StatusCode)
+		fmt.Println("ERROR. Status: ", resp.StatusCode, "\n")
 		b, _ := ioutil.ReadAll(resp.Body)
 		fmt.Printf("%s\n", b)
 	}
