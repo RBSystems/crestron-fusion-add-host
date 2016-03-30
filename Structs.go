@@ -85,6 +85,7 @@ type ElasticSearchRoomInfo struct {
 //Config represents the unmarshalled items in the config file
 type Config struct {
 	ElasticSearchConfigInfoAddress string
+	CSVRoomInfoLocation            string
 	SignalDefinitionFile           string
 	GroupWarePassword              string
 	GroupWareUsername              string

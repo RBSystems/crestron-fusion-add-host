@@ -1,0 +1,16 @@
+{
+  "ElasticSearchConfigInfoAddress": "https://search-byu-oit-av-metrics-ruenjnrqfuhghh7omvtmgcqe7m.us-west-1.es.amazonaws.com/config/_search?size=1000",
+  "SignalDefinitionFile": "./signals.json",
+  "GroupWarePassword": "fus10nRD1875",
+  "GroupWareUsername": "fusionsa@byu.edu",
+  "GroupwareURL": "ldap://cad6.byu.local",
+  "GroupwareProviderType": "ldap",
+  "ParentNodeID": "ROOMS",
+  "TimeZoneID": "-700",
+  "Version": "8",
+  "IPID": 16,
+  "Port": 41794,
+  "SecurePort": 41796,
+  "FusionAddress": "http://lazyeye.byu.edu/fusion/apiservice/rooms/",
+  "CSVRoomInfoLocation": "./rooms.csv"
+}

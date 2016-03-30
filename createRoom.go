@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/csv"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -33,7 +34,7 @@ func getRoomCSV(filePath string) []RoomInfo {
 
 		//For now assume order is going to hostname,ipaddress.
 		//TODO: make this dynamic
-		info := RoomInfo{Hostname: values[k][0], IPAddress: values[k][1]}
+		info := RoomInfo{Hostname: values[k][0], IPAddress: values[k][1], RoomName: values[k][2], Coordinates: values[k][3]}
 
 		//Uncomment to see everything that's out
 		//fmt.Println("IPAddress: ", info.IPAddress, " HOSTNAME: ", info.Hostname)
@@ -79,7 +80,10 @@ func buildRoom(info RoomInfo, configuration Config) Room {
 	f, err := ioutil.ReadFile(configuration.SignalDefinitionFile)
 	check(err)
 	var signals []Signal
+
 	json.Unmarshal(f, &signals)
+
+	fmt.Printf("Signals: %+v\n", signals)
 
 	//Let's start building you
 	var room Room
@@ -143,20 +147,29 @@ func getRoominfoElasticSearch(address string) []RoomInfo {
 }
 
 func sendRoom(room RoomInfo, config Config) {
-	fmt.Printf("Sending room %v", room.Hostname)
+	fmt.Printf("Sending room %v\n", room.Hostname)
 	roomToSend := buildRoom(room, config)
 
 	b, err := json.Marshal(roomToSend)
 	check(err)
 
 	//We should probably check the response here, but if it doesn't succeed err will go bad.
-	_, err = http.Post(config.FusionAddress, "application/json", bytes.NewBuffer(b))
+	resp, err := http.Post(config.FusionAddress, "application/json", bytes.NewBuffer(b))
+
+	fmt.Printf("Stuff being sent \n %s \n\n", b)
 
 	if err != nil {
+		fmt.Printf("Error: %v\n", err.Error())
+	}
+
+	if resp.StatusCode == 200 {
 		fmt.Printf("Success!")
 	} else {
-		fmt.Printf("Error: %v", err.Error())
+		fmt.Println("ERROR. Status: ", resp.StatusCode)
+		b, _ := ioutil.ReadAll(resp.Body)
+		fmt.Printf("%s\n", b)
 	}
+
 }
 
 func addAllRooms(config Config, rooms []RoomInfo) {
@@ -167,7 +180,23 @@ func addAllRooms(config Config, rooms []RoomInfo) {
 }
 
 func main() {
-	config := importConfig("./Config.json")
-	roomInfo := getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+	var ConfigFileLocation = flag.String("config", "./config.json", "The locaton of the config file.")
+	var roomSource = flag.Int("source", 0, "The source of the room info to import into Fusion. 0 for elastic search. 1 for CSV. Default 0.")
+	var roomInfo []RoomInfo
+
+	flag.Parse()
+
+	config := importConfig(*ConfigFileLocation)
+
+	fmt.Println("RoomSource", *roomSource)
+
+	if *roomSource == 0 {
+		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+	} else if *roomSource == 1 {
+		roomInfo = getRoomCSV(config.CSVRoomInfoLocation)
+	} else {
+		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+	}
+
 	addAllRooms(config, roomInfo)
 }
