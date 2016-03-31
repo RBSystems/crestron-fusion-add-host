@@ -99,3 +99,18 @@ type Config struct {
 	Port                           int
 	SecurePort                     int
 }
+
+//FusionRoomInfo is a list of the room info we get from Fusion itself
+type FusionRoomInfo struct {
+	Description string
+	RoomID      string
+	RoomName    string
+}
+
+//FusionRoomResponse the full response gotten when querying the Fustion/APIService/Rooms node
+type FusionRoomResponse struct {
+	APIRooms     []FusionRoomInfo `json:"API_Rooms"`
+	Message      string
+	Status       string
+	TotalRecords int
+}

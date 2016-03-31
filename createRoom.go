@@ -9,6 +9,10 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"regexp"
+	"strconv"
+	"strings"
+	"time"
 )
 
 func getRoomCSV(filePath string) []RoomInfo {
@@ -114,6 +118,53 @@ func buildRoom(info RoomInfo, configuration Config) Room {
 	return room
 }
 
+func getRoomsFromFusion(address string) []FusionRoomInfo {
+	fmt.Printf("Getting the room list from fusion at:  %v \n", address)
+
+	client := &http.Client{}
+
+	currentPage := 1
+	goalPage := 2
+
+	var toReturn []FusionRoomInfo
+
+	for currentPage <= goalPage {
+		reqAddress := address + "?page=" + strconv.Itoa(currentPage)
+		fmt.Printf("\nRequestAddress %s \n", reqAddress)
+		req, err := http.NewRequest("GET", reqAddress, nil)
+		req.Header.Add("Content-Type", "application/json")
+		check(err)
+
+		resp, err := client.Do(req)
+		check(err)
+
+		var response = FusionRoomResponse{}
+		bits, err := ioutil.ReadAll(resp.Body)
+		check(err)
+
+		fmt.Printf("\nResponse: %s\n", bits)
+
+		err = json.Unmarshal(bits, &response)
+		check(err)
+
+		var myExp = regexp.MustCompile(`Page ([0-9]+) of ([0-9]+)`)
+
+		match := myExp.FindStringSubmatch(response.Message)
+
+		toReturn = append(toReturn, response.APIRooms...)
+
+		currentPage, err = strconv.Atoi(match[1])
+		check(err)
+		goalPage, err = strconv.Atoi(match[2])
+		check(err)
+		fmt.Printf("\nDownloaded page %v of %v\n", currentPage, goalPage)
+
+		currentPage++
+	}
+
+	return toReturn
+}
+
 //get the room info for reporting from elastic search
 func getRoominfoElasticSearch(address string) []RoomInfo {
 	fmt.Printf("Importing the room information from Elastic Search at: %v \n", address)
@@ -165,15 +216,27 @@ func sendRoom(room RoomInfo, config Config) {
 	if resp.StatusCode == 200 {
 		fmt.Printf("Success!\n")
 	} else {
-		fmt.Println("ERROR. Status: ", resp.StatusCode, "\n")
+		fmt.Printf("ERROR. Status: %v \n \n", resp.StatusCode)
 		b, _ := ioutil.ReadAll(resp.Body)
 		fmt.Printf("%s\n", b)
 	}
 
 }
 
+func deleteAllRooms() {
+
+}
+
 func addAllRooms(config Config, rooms []RoomInfo) {
+
+	count := 0
+
 	for k := range rooms {
+
+		if count%50 == 0 {
+			time.Sleep(5 * time.Second)
+		}
+
 		curRoom := rooms[k]
 		sendRoom(curRoom, config)
 	}
@@ -181,22 +244,33 @@ func addAllRooms(config Config, rooms []RoomInfo) {
 
 func main() {
 	var ConfigFileLocation = flag.String("config", "./config.json", "The locaton of the config file.")
-	var roomSource = flag.Int("source", 0, "The source of the room info to import into Fusion. 0 for elastic search. 1 for CSV. Default 0.")
+	var operation = flag.String("op", "T", "Define the operation desired. 'A' = add rooms, 'T' = test, 'D' = delete")
+	var roomSource = flag.Int("src", 0, "The source of the room info to import into Fusion. 0 for elastic search. 1 for CSV. Default 0.")
+
 	var roomInfo []RoomInfo
 
 	flag.Parse()
 
 	config := importConfig(*ConfigFileLocation)
 
-	fmt.Println("RoomSource", *roomSource)
+	if strings.EqualFold("A", *operation) {
+		fmt.Println("RoomSource", *roomSource)
 
-	if *roomSource == 0 {
-		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
-	} else if *roomSource == 1 {
-		roomInfo = getRoomCSV(config.CSVRoomInfoLocation)
-	} else {
-		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+		if *roomSource == 0 {
+			roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+		} else if *roomSource == 1 {
+			roomInfo = getRoomCSV(config.CSVRoomInfoLocation)
+		} else {
+			roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+		}
+
+		addAllRooms(config, roomInfo)
+	} else if strings.EqualFold("D", *operation) {
+		//Delete things
+	} else if strings.EqualFold("T", *operation) {
+		rooms := getRoomsFromFusion(config.FusionAddress)
+
+		fmt.Printf("\n%+v\n", rooms)
+
 	}
-
-	addAllRooms(config, roomInfo)
 }
