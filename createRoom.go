@@ -223,8 +223,28 @@ func sendRoom(room RoomInfo, config Config) {
 
 }
 
-func deleteAllRooms() {
+func deleteAllRooms(rooms []FusionRoomInfo, address string) {
+	fmt.Printf("Deleting all the rooms. \n")
 
+	client := &http.Client{}
+	count := 0
+
+	for room := range rooms {
+		if count%150 == 0 {
+			time.Sleep(5 * time.Second)
+		}
+		req, err := http.NewRequest("DELETE", address+"/"+rooms[room].RoomID, nil)
+		check(err)
+
+		_, err = client.Do(req)
+
+		check(err)
+
+		count++
+		fmt.Printf("Deleted %v", rooms[room].RoomName)
+	}
+
+	fmt.Printf("Done. Deleted %v rooms.", count)
 }
 
 func addAllRooms(config Config, rooms []RoomInfo) {
@@ -266,7 +286,8 @@ func main() {
 
 		addAllRooms(config, roomInfo)
 	} else if strings.EqualFold("D", *operation) {
-		//Delete things
+		rooms := getRoomsFromFusion(config.FusionAddress)
+		deleteAllRooms(rooms, config.FusionAddress)
 	} else if strings.EqualFold("T", *operation) {
 		rooms := getRoomsFromFusion(config.FusionAddress)
 
