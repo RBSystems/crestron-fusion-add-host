@@ -11,6 +11,7 @@
   "IPID": 16,
   "Port": 41794,
   "SecurePort": 41796,
-  "FusionAddress": "http://lazyeye.byu.edu/fusion/apiservice/rooms/",
+  "FusionRoomsAddress": "http://lazyeye.byu.edu/fusion/apiservice/rooms/",
+  "FusionAttributesAddress": "http://lazyeye.byu.edu/fusion/apiservice/attributes/",
   "CSVRoomInfoLocation": "./rooms.csv"
 }

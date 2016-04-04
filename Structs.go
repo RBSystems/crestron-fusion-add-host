@@ -94,7 +94,8 @@ type Config struct {
 	ParentNodeID                   string
 	TimeZoneID                     string
 	Version                        string
-	FusionAddress                  string
+	FusionRoomsAddress             string
+	FusionAttributesAddress        string
 	IPID                           int
 	Port                           int
 	SecurePort                     int
@@ -105,6 +106,20 @@ type FusionRoomInfo struct {
 	Description string
 	RoomID      string
 	RoomName    string
+}
+
+//FusionAttributeInfo refelcts a single attribute item
+type FusionAttributeInfo struct {
+	AttributeID   string
+	AttributeName string
+}
+
+//FusionAttributeResponse represents the response from a get to /attributes
+type FusionAttributeResponse struct {
+	APIAttributes []FusionAttributeInfo `json:"API_Attributes"`
+	Message       string
+	Status        string
+	TotalRecords  int
 }
 
 //FusionRoomResponse the full response gotten when querying the Fustion/APIService/Rooms node

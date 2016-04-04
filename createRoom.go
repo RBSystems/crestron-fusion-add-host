@@ -118,6 +118,54 @@ func buildRoom(info RoomInfo, configuration Config) Room {
 	return room
 }
 
+func getAttributesFusion(address string) []FusionAttributeInfo {
+	fmt.Printf("Getting attribute list from fusion at : %v \n", address)
+
+	client := &http.Client{}
+
+	currentPage := 1
+	goalPage := 2
+
+	var toReturn []FusionAttributeInfo
+
+	for currentPage <= goalPage {
+		reqAddress := address + "?page=" + strconv.Itoa(currentPage)
+		fmt.Printf("\nRequestAddress %s \n", reqAddress)
+		req, err := http.NewRequest("GET", reqAddress, nil)
+		req.Header.Add("Content-Type", "application/json")
+		check(err)
+
+		resp, err := client.Do(req)
+		check(err)
+
+		var response = FusionAttributeResponse{}
+		bits, err := ioutil.ReadAll(resp.Body)
+		check(err)
+
+		fmt.Printf("\nResponse: %s\n", bits)
+
+		err = json.Unmarshal(bits, &response)
+		check(err)
+
+		var myExp = regexp.MustCompile(`Page ([0-9]+) of ([0-9]+)`)
+
+		match := myExp.FindStringSubmatch(response.Message)
+
+		toReturn = append(toReturn, response.APIAttributes...)
+
+		currentPage, err = strconv.Atoi(match[1])
+		check(err)
+		goalPage, err = strconv.Atoi(match[2])
+		check(err)
+		fmt.Printf("\nDownloaded page %v of %v\n", currentPage, goalPage)
+		resp.Body.Close()
+
+		currentPage++
+	}
+
+	return toReturn
+}
+
 func getRoomsFromFusion(address string) []FusionRoomInfo {
 	fmt.Printf("Getting the room list from fusion at:  %v \n", address)
 
@@ -171,6 +219,7 @@ func getRoominfoElasticSearch(address string) []RoomInfo {
 
 	resp, err := http.Get(address)
 	check(err)
+	defer resp.Body.Close()
 
 	var response = ElasticSearchResponse{}
 	bits, err := ioutil.ReadAll(resp.Body)
@@ -205,7 +254,7 @@ func sendRoom(room RoomInfo, config Config) {
 	check(err)
 
 	//We should probably check the response here, but if it doesn't succeed err will go bad.
-	resp, err := http.Post(config.FusionAddress, "application/json", bytes.NewBuffer(b))
+	resp, err := http.Post(config.FusionRoomsAddress, "application/json", bytes.NewBuffer(b))
 
 	fmt.Printf("Stuff being sent \n %s \n\n", b)
 
@@ -221,6 +270,7 @@ func sendRoom(room RoomInfo, config Config) {
 		fmt.Printf("%s\n", b)
 	}
 
+	resp.Body.Close()
 }
 
 func deleteAllRooms(rooms []FusionRoomInfo, address string) {
@@ -236,15 +286,56 @@ func deleteAllRooms(rooms []FusionRoomInfo, address string) {
 		req, err := http.NewRequest("DELETE", address+"/"+rooms[room].RoomID, nil)
 		check(err)
 
-		_, err = client.Do(req)
+		resp, err := client.Do(req)
 
 		check(err)
 
 		count++
-		fmt.Printf("Deleted %v", rooms[room].RoomName)
+		resp.Body.Close()
+		fmt.Printf("Deleted %v \n", rooms[room].RoomName)
 	}
 
-	fmt.Printf("Done. Deleted %v rooms.", count)
+	fmt.Printf("Done. Deleted %v rooms.\n", count)
+}
+
+func deleteAllAttributes(attributes []FusionAttributeInfo, address string) {
+	fmt.Printf("Deleting all the Attributes. \n")
+
+	client := &http.Client{}
+	count := 0
+
+	for cur := range attributes {
+		if count%150 == 0 {
+			time.Sleep(5 * time.Second)
+		}
+		req, err := http.NewRequest("DELETE", address+"/"+attributes[cur].AttributeID, nil)
+		check(err)
+
+		resp, err := client.Do(req)
+		resp.Body.Close()
+
+		//if it fails, wait 10 seconds and try once again, if it fails again, skip.
+		if err == nil {
+			count++
+			fmt.Printf("Deleted %v \n", attributes[cur].AttributeName)
+		} else {
+			time.Sleep(10 * time.Second)
+			req, err = http.NewRequest("DELETE", address+"/"+attributes[cur].AttributeID, nil)
+			check(err)
+			resp, err = client.Do(req)
+
+			resp.Body.Close()
+
+			if err == nil {
+				count++
+				fmt.Printf("Deleted %v \n", attributes[cur].AttributeName)
+			} else {
+				fmt.Printf("Error deleting %v. Error: %v \n", attributes[cur].AttributeName, err.Error())
+			}
+		}
+	}
+
+	fmt.Printf("Done. Deleted %v attributes.\n", count)
 }
 
 func addAllRooms(config Config, rooms []RoomInfo) {
@@ -254,12 +345,16 @@ func addAllRooms(config Config, rooms []RoomInfo) {
 	for k := range rooms {
 
 		if count%50 == 0 {
-			time.Sleep(5 * time.Second)
+			fmt.Printf("Waiting \n")
+			time.Sleep(1 * time.Second)
+
 		}
 
 		curRoom := rooms[k]
 		sendRoom(curRoom, config)
+		count++
 	}
+	fmt.Printf("Sent %v items \n", count)
 }
 
 func main() {
@@ -286,12 +381,9 @@ func main() {
 
 		addAllRooms(config, roomInfo)
 	} else if strings.EqualFold("D", *operation) {
-		rooms := getRoomsFromFusion(config.FusionAddress)
-		deleteAllRooms(rooms, config.FusionAddress)
+		rooms := getRoomsFromFusion(config.FusionRoomsAddress)
+		deleteAllRooms(rooms, config.FusionRoomsAddress)
 	} else if strings.EqualFold("T", *operation) {
-		rooms := getRoomsFromFusion(config.FusionAddress)
-
-		fmt.Printf("\n%+v\n", rooms)
-
+		deleteAllAttributes(getAttributesFusion(config.FusionAttributesAddress), config.FusionAttributesAddress)
 	}
 }
