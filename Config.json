@@ -13,5 +13,7 @@
   "SecurePort": 41796,
   "FusionRoomsAddress": "http://lazyeye.byu.edu/fusion/apiservice/rooms/",
   "FusionAttributesAddress": "http://lazyeye.byu.edu/fusion/apiservice/attributes/",
-  "CSVRoomInfoLocation": "./rooms.csv"
+  "FusionDeleteObjectHackAddress": "http://lazyeye.byu.edu/Fusion/WebClient/Setup/asmx/MainPg.asmx/DeleteObject",
+  "CSVRoomInfoLocation": "./rooms.csv",
+  "SMWLocation": "./regexTester.txt"
 }

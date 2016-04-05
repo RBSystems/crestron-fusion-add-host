@@ -62,10 +62,7 @@ func importConfig(configPath string) Config {
 	var configurationData Config
 	json.Unmarshal(f, &configurationData)
 
-	//TODO: this needs to be more robust.
-	if configurationData.ElasticSearchConfigInfoAddress == "" {
-		panic("Invalid Configuration File.")
-	}
+	fmt.Printf("\n%s\n", f)
 
 	fmt.Printf("Done. Configuration data: \n %+v \n", configurationData)
 	return configurationData
@@ -86,8 +83,6 @@ func buildRoom(info RoomInfo, configuration Config) Room {
 	var signals []Signal
 
 	json.Unmarshal(f, &signals)
-
-	fmt.Printf("Signals: %+v\n", signals)
 
 	//Let's start building you
 	var room Room
@@ -246,17 +241,21 @@ func getRoominfoElasticSearch(address string) []RoomInfo {
 	return toReturn
 }
 
-func sendRoom(room RoomInfo, config Config) {
+func sendRoom(room RoomInfo, config Config, method string) {
 	fmt.Printf("Sending room %v\n", room.Hostname)
 	roomToSend := buildRoom(room, config)
 
 	b, err := json.Marshal(roomToSend)
 	check(err)
 
-	//We should probably check the response here, but if it doesn't succeed err will go bad.
-	resp, err := http.Post(config.FusionRoomsAddress, "application/json", bytes.NewBuffer(b))
+	client := &http.Client{}
 
-	fmt.Printf("Stuff being sent \n %s \n\n", b)
+	req, err := http.NewRequest(method, config.FusionRoomsAddress, bytes.NewBuffer(b))
+
+	req.Header.Add("content-type", "application/json")
+
+	resp, err := client.Do(req)
+	defer resp.Body.Close()
 
 	if err != nil {
 		fmt.Printf("Error: %v\n", err.Error())
@@ -269,8 +268,6 @@ func sendRoom(room RoomInfo, config Config) {
 		b, _ := ioutil.ReadAll(resp.Body)
 		fmt.Printf("%s\n", b)
 	}
-
-	resp.Body.Close()
 }
 
 func deleteAllRooms(rooms []FusionRoomInfo, address string) {
@@ -298,44 +295,39 @@ func deleteAllRooms(rooms []FusionRoomInfo, address string) {
 	fmt.Printf("Done. Deleted %v rooms.\n", count)
 }
 
-func deleteAllAttributes(attributes []FusionAttributeInfo, address string) {
-	fmt.Printf("Deleting all the Attributes. \n")
+func deleteAllProcs(rooms []RoomInfo, address string) {
+	fmt.Printf("Deleting all the Proccessors. \n")
 
 	client := &http.Client{}
 	count := 0
 
-	for cur := range attributes {
-		if count%150 == 0 {
-			time.Sleep(5 * time.Second)
-		}
-		req, err := http.NewRequest("DELETE", address+"/"+attributes[cur].AttributeID, nil)
+	for room := range rooms {
+		cur := rooms[room]
+
+		procToDelete := DeleteProcInfo{cur.IPAddress, cur.Hostname, "PROC"}
+
+		b, err := json.Marshal(procToDelete)
 		check(err)
 
+		fmt.Printf("Being sent: %v \n", string(b))
+
+		req, err := http.NewRequest("POST", address, bytes.NewBuffer(b))
+		check(err)
+
+		req.Header.Add("Content-Type", "application/json")
+
 		resp, err := client.Do(req)
+
+		check(err)
+
+		fmt.Printf("Response: \n %s \n", resp.Body)
+
+		count++
 		resp.Body.Close()
-
-		//if it fails, wait 10 seconds and try once again, if it fails again, skip.
-		if err == nil {
-			count++
-			fmt.Printf("Deleted %v \n", attributes[cur].AttributeName)
-		} else {
-			time.Sleep(10 * time.Second)
-			req, err = http.NewRequest("DELETE", address+"/"+attributes[cur].AttributeID, nil)
-			check(err)
-			resp, err = client.Do(req)
-
-			resp.Body.Close()
-
-			if err == nil {
-				count++
-				fmt.Printf("Deleted %v \n", attributes[cur].AttributeName)
-			} else {
-				fmt.Printf("Error deleting %v. Error: %v \n", attributes[cur].AttributeName, err.Error())
-			}
-		}
+		fmt.Printf("Deleted %v \n", rooms[room].Hostname)
 	}
 
-	fmt.Printf("Done. Deleted %v attributes.\n", count)
+	fmt.Printf("Done. Deleted %v proccessors.\n", count)
 }
 
 func addAllRooms(config Config, rooms []RoomInfo) {
@@ -343,18 +335,102 @@ func addAllRooms(config Config, rooms []RoomInfo) {
 	count := 0
 
 	for k := range rooms {
-
-		if count%50 == 0 {
-			fmt.Printf("Waiting \n")
-			time.Sleep(1 * time.Second)
-
-		}
-
 		curRoom := rooms[k]
-		sendRoom(curRoom, config)
+		sendRoom(curRoom, config, "POST")
 		count++
 	}
 	fmt.Printf("Sent %v items \n", count)
+}
+
+func udpateAllRooms(config Config, rooms []RoomInfo) {
+	fmt.Printf("Updating all rooms.")
+
+	count := 0
+
+	for k := range rooms {
+		curRoom := rooms[k]
+		sendRoom(curRoom, config, "PUT")
+		count++
+	}
+	fmt.Printf("Sent %v items \n", count)
+}
+
+func writeSignalFile(config Config, signals []Signal) {
+	b, err := json.Marshal(signals)
+	check(err)
+
+	err = ioutil.WriteFile(config.SignalDefinitionFile, b, 0644)
+	check(err)
+}
+
+func buildSignalMap(info []FusionAttributeInfo) map[string]string {
+	mapToReturn := make(map[string]string)
+
+	for cur := range info {
+		mapToReturn[info[cur].AttributeName] = info[cur].AttributeID
+	}
+
+	return mapToReturn
+}
+
+func getJoinNumbersFromSMW(config Config, info []FusionAttributeInfo) []Signal {
+	fmt.Printf("Importing the signal information from %v \n", config.SMWLocation)
+
+	var signalsToReturn []Signal
+
+	b, err := ioutil.ReadFile(config.SMWLocation)
+	check(err)
+
+	regexString := "\\[\\sObjTp=[A-Za-z0-9]+\\s+H=[A-Za-z0-9]+\\s+SmC=[A-Za-z0-9]+\\s+Nm=Fusion (Analogs|Digitals|Serials)[\\S\\s]*?(P1[\\s\\S]*?)\\]"
+
+	var hello = regexp.MustCompile(regexString)
+	check(err)
+
+	matches := hello.FindAllStringSubmatch(string(b), 3)
+	signalMap := buildSignalMap(info)
+
+	for cur := range matches {
+		var signalType = 0
+		switch matches[cur][1] {
+		case "Digitals":
+			signalType = 2
+		case "Serials":
+			signalType = 3
+		case "Analogs":
+			signalType = 1
+		}
+
+		regexStringJoinNo := "P([0-9]+)=(.+)"
+		expression1, err := regexp.Compile(regexStringJoinNo)
+		check(err)
+
+		joinNumbersNames := expression1.FindAllStringSubmatch(matches[cur][2], -1)
+
+		fmt.Printf("Found %d  %s signals.\n", len(joinNumbersNames), matches[cur][1])
+
+		for curJoin := range joinNumbersNames {
+
+			if strings.EqualFold(joinNumbersNames[curJoin][2], "") {
+				continue
+			}
+
+			signalName := joinNumbersNames[curJoin][2]
+			signalID, contains := signalMap[signalName]
+
+			if !contains {
+				continue
+			}
+
+			joinNo, _ := strconv.Atoi(joinNumbersNames[curJoin][1])
+			logicalOperator := 4
+
+			signalsToReturn = append(signalsToReturn, Signal{signalName, signalID, signalType,
+				joinNo, logicalOperator})
+		}
+	}
+	fmt.Printf("Found %d total signals.\n", len(signalsToReturn))
+
+	return signalsToReturn
 }
 
 func main() {
@@ -367,23 +443,22 @@ func main() {
 	flag.Parse()
 
 	config := importConfig(*ConfigFileLocation)
+	if *roomSource == 0 {
+		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+	} else if *roomSource == 1 {
+		roomInfo = getRoomCSV(config.CSVRoomInfoLocation)
+	} else {
+		roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
+	}
 
 	if strings.EqualFold("A", *operation) {
 		fmt.Println("RoomSource", *roomSource)
-
-		if *roomSource == 0 {
-			roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
-		} else if *roomSource == 1 {
-			roomInfo = getRoomCSV(config.CSVRoomInfoLocation)
-		} else {
-			roomInfo = getRoominfoElasticSearch(config.ElasticSearchConfigInfoAddress)
-		}
-
 		addAllRooms(config, roomInfo)
 	} else if strings.EqualFold("D", *operation) {
 		rooms := getRoomsFromFusion(config.FusionRoomsAddress)
 		deleteAllRooms(rooms, config.FusionRoomsAddress)
 	} else if strings.EqualFold("T", *operation) {
-		deleteAllAttributes(getAttributesFusion(config.FusionAttributesAddress), config.FusionAttributesAddress)
+		signals := getJoinNumbersFromSMW(config, getAttributesFusion(config.FusionAttributesAddress))
+		writeSignalFile(config, signals)
 	}
 }

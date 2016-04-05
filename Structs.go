@@ -96,9 +96,19 @@ type Config struct {
 	Version                        string
 	FusionRoomsAddress             string
 	FusionAttributesAddress        string
+	FusionDeleteObjectHackAddress  string
+	SMWLocation                    string
 	IPID                           int
 	Port                           int
 	SecurePort                     int
+}
+
+//DeleteProcInfo is a struct representing the payload necessary to send the delete
+//processor command.
+type DeleteProcInfo struct {
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	TypeString string `json:"type"`
 }
 
 //FusionRoomInfo is a list of the room info we get from Fusion itself

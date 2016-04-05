@@ -1,0 +1,824 @@
+ [{
+   "AttributeID": "1AppleTv",
+   "AttributeName": "1AppleTv"
+ }, {
+   "AttributeID": "1DeptDevice",
+   "AttributeName": "1DeptDevice"
+ }, {
+   "AttributeID": "1DocCam",
+   "AttributeName": "1DocCam"
+ }, {
+   "AttributeID": "1TecPc",
+   "AttributeName": "1TecPc"
+ }, {
+   "AttributeID": "2Comp2",
+   "AttributeName": "2Comp2"
+ }, {
+   "AttributeID": "2IPTV",
+   "AttributeName": "2IPTV"
+ }, {
+   "AttributeID": "3Blu-ray",
+   "AttributeName": "3Blu-ray"
+ }, {
+   "AttributeID": "3Comp3",
+   "AttributeName": "3Comp3"
+ }, {
+   "AttributeID": "4HdmiCable",
+   "AttributeName": "4HdmiCable"
+ }, {
+   "AttributeID": "4VgaCable",
+   "AttributeName": "4VgaCable"
+ }, {
+   "AttributeID": "5A/VInput",
+   "AttributeName": "5A/VInput"
+ }, {
+   "AttributeID": "5HdmiJack",
+   "AttributeName": "5HdmiJack"
+ }, {
+   "AttributeID": "6AppleTv",
+   "AttributeName": "6AppleTv"
+ }, {
+   "AttributeID": "6CustLabel",
+   "AttributeName": "6CustLabel"
+ }, {
+   "AttributeID": "6DeptDevice",
+   "AttributeName": "6DeptDevice"
+ }, {
+   "AttributeID": "6DocCamCeiling",
+   "AttributeName": "6DocCamCeiling"
+ }, {
+   "AttributeID": "6DocCamDesk",
+   "AttributeName": "6DocCamDesk"
+ }, {
+   "AttributeID": "6Overflow",
+   "AttributeName": "6Overflow"
+ }, {
+   "AttributeID": "6TableInput",
+   "AttributeName": "6TableInput"
+ }, {
+   "AttributeID": "6TecPC2",
+   "AttributeName": "6TecPC2"
+ }, {
+   "AttributeID": "7AppleTv",
+   "AttributeName": "7AppleTv"
+ }, {
+   "AttributeID": "7CustLabel",
+   "AttributeName": "7CustLabel"
+ }, {
+   "AttributeID": "7DeptDevice",
+   "AttributeName": "7DeptDevice"
+ }, {
+   "AttributeID": "7DocCamCeiling",
+   "AttributeName": "7DocCamCeiling"
+ }, {
+   "AttributeID": "7DocCamDesk",
+   "AttributeName": "7DocCamDesk"
+ }, {
+   "AttributeID": "7Overflow",
+   "AttributeName": "7Overflow"
+ }, {
+   "AttributeID": "7TableInput",
+   "AttributeName": "7TableInput"
+ }, {
+   "AttributeID": "7TecPc2",
+   "AttributeName": "7TecPc2"
+ }, {
+   "AttributeID": "8c19455f-916e-4118-9d73-66c1fdd105cb",
+   "AttributeName": "TP Online"
+ }, {
+   "AttributeID": "Alerts",
+   "AttributeName": "Alerts"
+ }, {
+   "AttributeID": "Analog Video Sence",
+   "AttributeName": "Analog Video Sence"
+ }, {
+   "AttributeID": "Authenticate",
+   "AttributeName": "Authenticate"
+ }, {
+   "AttributeID": "AUTHENTICATE_REQUEST",
+   "AttributeName": "Authenticate Request"
+ }, {
+   "AttributeID": "AUTHENTICATION_FAILED",
+   "AttributeName": "Authentication Failed"
+ }, {
+   "AttributeID": "AUTHENTICATION_SUCCEEDED",
+   "AttributeName": "Authentication Succeeded"
+ }, {
+   "AttributeID": "AVAIL_ROOMS_VERSION",
+   "AttributeName": "Avail Rooms Version"
+ }, {
+   "AttributeID": "B1Bars",
+   "AttributeName": "B1Bars"
+ }, {
+   "AttributeID": "B1Status",
+   "AttributeName": "B1Status"
+ }, {
+   "AttributeID": "B1Time",
+   "AttributeName": "B1Time"
+ }, {
+   "AttributeID": "B2Bars",
+   "AttributeName": "B2Bars"
+ }, {
+   "AttributeID": "B2Status",
+   "AttributeName": "B2Status"
+ }, {
+   "AttributeID": "B2Time",
+   "AttributeName": "B2Time"
+ }, {
+   "AttributeID": "Broadcast_Error_Message",
+   "AttributeName": "Broadcast Error Message"
+ }, {
+   "AttributeID": "BROADCAST_MESSAGE_ENABLED",
+   "AttributeName": "Broadcast Message Enabled"
+ }, {
+   "AttributeID": "BROADCAST_MSG",
+   "AttributeName": "Broadcast Message"
+ }, {
+   "AttributeID": "BROADCAST_MSG_TYPE",
+   "AttributeName": "Broadcast Message Type"
+ }, {
+   "AttributeID": "Broadcast_Video_Resource",
+   "AttributeName": "Broadcast Video Resource"
+ }, {
+   "AttributeID": "BUSY_STATUS",
+   "AttributeName": "Busy Status"
+ }, {
+   "AttributeID": "CAMERACOMPOSITEDETECTED",
+   "AttributeName": "Camera Composite Detected"
+ }, {
+   "AttributeID": "CAMERASDIDETECTED",
+   "AttributeName": "Camera SDI Detected"
+ }, {
+   "AttributeID": "CAPTUREBITRATE",
+   "AttributeName": "Capture Bitrate"
+ }, {
+   "AttributeID": "CAPTUREFORMAT",
+   "AttributeName": "Capture Format"
+ }, {
+   "AttributeID": "CloseAllShades",
+   "AttributeName": "Close All Shades"
+ }, {
+   "AttributeID": "CONTENTVIDEODETECTED",
+   "AttributeName": "Content Video Detected"
+ }, {
+   "AttributeID": "CrestronVersion",
+   "AttributeName": "CrestronVersion"
+ }, {
+   "AttributeID": "CURRENTMEETINGNAME",
+   "AttributeName": "Current Meeting Name"
+ }, {
+   "AttributeID": "CURRENTMEETINGORGANIZER",
+   "AttributeName": "Current Meeting Organizer"
+ }, {
+   "AttributeID": "CURRENTMEETINGTIME",
+   "AttributeName": "Current Meeting Time"
+ }, {
+   "AttributeID": "D1Comm",
+   "AttributeName": "D1Comm"
+ }, {
+   "AttributeID": "D1Err",
+   "AttributeName": "D1Err"
+ }, {
+   "AttributeID": "D1Firmware",
+   "AttributeName": "D1Firmware"
+ }, {
+   "AttributeID": "D1ID",
+   "AttributeName": "D1ID"
+ }, {
+   "AttributeID": "D1IPAddress",
+   "AttributeName": "D1IPAddress"
+ }, {
+   "AttributeID": "D1Model",
+   "AttributeName": "D1Model"
+ }, {
+   "AttributeID": "D1Name",
+   "AttributeName": "D1Name"
+ }, {
+   "AttributeID": "D1Online",
+   "AttributeName": "D1Online"
+ }, {
+   "AttributeID": "D1Resolution",
+   "AttributeName": "D1Resolution"
+ }, {
+   "AttributeID": "D1Secure",
+   "AttributeName": "D1Secure"
+ }, {
+   "AttributeID": "D1Status",
+   "AttributeName": "D1Status"
+ }, {
+   "AttributeID": "D1Temp",
+   "AttributeName": "D1Temp"
+ }, {
+   "AttributeID": "D1Usage",
+   "AttributeName": "D1Usage"
+ }, {
+   "AttributeID": "D2Comm",
+   "AttributeName": "D2Comm"
+ }, {
+   "AttributeID": "D2Err",
+   "AttributeName": "D2Err"
+ }, {
+   "AttributeID": "D2Firmware",
+   "AttributeName": "D2Firmware"
+ }, {
+   "AttributeID": "D2ID",
+   "AttributeName": "D2ID"
+ }, {
+   "AttributeID": "D2IPAddress",
+   "AttributeName": "D2IPAddress"
+ }, {
+   "AttributeID": "D2Model",
+   "AttributeName": "D2Model"
+ }, {
+   "AttributeID": "D2Name",
+   "AttributeName": "D2Name"
+ }, {
+   "AttributeID": "D2Online",
+   "AttributeName": "D2Online"
+ }, {
+   "AttributeID": "D2Poser",
+   "AttributeName": "D2Poser"
+ }, {
+   "AttributeID": "D2Resolution",
+   "AttributeName": "D2Resolution"
+ }, {
+   "AttributeID": "D2Secure",
+   "AttributeName": "D2Secure"
+ }, {
+   "AttributeID": "D2Status",
+   "AttributeName": "D2Status"
+ }, {
+   "AttributeID": "D2Temp",
+   "AttributeName": "D2Temp"
+ }, {
+   "AttributeID": "D2Usage",
+   "AttributeName": "D2Usage"
+ }, {
+   "AttributeID": "D3Comm",
+   "AttributeName": "D3Comm"
+ }, {
+   "AttributeID": "D3Err",
+   "AttributeName": "D3Err"
+ }, {
+   "AttributeID": "D3Firmware",
+   "AttributeName": "D3Firmware"
+ }, {
+   "AttributeID": "D3ID",
+   "AttributeName": "D3ID"
+ }, {
+   "AttributeID": "D3IPAddress",
+   "AttributeName": "D3IPAddress"
+ }, {
+   "AttributeID": "D3Model",
+   "AttributeName": "D3Model"
+ }, {
+   "AttributeID": "D3Name",
+   "AttributeName": "D3Name"
+ }, {
+   "AttributeID": "D3Online",
+   "AttributeName": "D3Online"
+ }, {
+   "AttributeID": "D3Power",
+   "AttributeName": "D3Power"
+ }, {
+   "AttributeID": "D3Resolution",
+   "AttributeName": "D3Resolution"
+ }, {
+   "AttributeID": "D3Secure",
+   "AttributeName": "D3Secure"
+ }, {
+   "AttributeID": "D3Status",
+   "AttributeName": "D3Status"
+ }, {
+   "AttributeID": "D3Temp",
+   "AttributeName": "D3Temp"
+ }, {
+   "AttributeID": "D3Usage",
+   "AttributeName": "D3Usage"
+ }, {
+   "AttributeID": "DEVICE_USAGE",
+   "AttributeName": "Device Usage"
+ }, {
+   "AttributeID": "Disp Com Err",
+   "AttributeName": "Disp Com Err"
+ }, {
+   "AttributeID": "Disp Err",
+   "AttributeName": "Disp Err"
+ }, {
+   "AttributeID": "Disp1ComErr",
+   "AttributeName": "Disp1ComErr"
+ }, {
+   "AttributeID": "Disp1Err",
+   "AttributeName": "Disp1Err"
+ }, {
+   "AttributeID": "Disp1FirmwareVer",
+   "AttributeName": "Disp1FirmwareVer"
+ }, {
+   "AttributeID": "Disp1Id",
+   "AttributeName": "Disp1Id"
+ }, {
+   "AttributeID": "Disp1IpAddr",
+   "AttributeName": "Disp1IpAddr"
+ }, {
+   "AttributeID": "Disp1LampHrs",
+   "AttributeName": "Disp1LampHrs"
+ }, {
+   "AttributeID": "Disp1Model",
+   "AttributeName": "Disp1Model"
+ }, {
+   "AttributeID": "Disp1OffLine",
+   "AttributeName": "Disp1OffLine"
+ }, {
+   "AttributeID": "Disp1PowerOn",
+   "AttributeName": "Disp1PowerOn"
+ }, {
+   "AttributeID": "Disp1ProjectorName",
+   "AttributeName": "Disp1ProjectorName"
+ }, {
+   "AttributeID": "Disp1Resolution",
+   "AttributeName": "Disp1Resolution"
+ }, {
+   "AttributeID": "Disp1Status",
+   "AttributeName": "Disp1Status"
+ }, {
+   "AttributeID": "Disp1Stolen",
+   "AttributeName": "Disp1Stolen"
+ }, {
+   "AttributeID": "Disp1Temp",
+   "AttributeName": "Disp1Temp"
+ }, {
+   "AttributeID": "Disp2ComErr",
+   "AttributeName": "Disp2ComErr"
+ }, {
+   "AttributeID": "Disp2Err",
+   "AttributeName": "Disp2Err"
+ }, {
+   "AttributeID": "Disp2FirmwareVer",
+   "AttributeName": "Disp2FirmwareVer"
+ }, {
+   "AttributeID": "Disp2Id",
+   "AttributeName": "Disp2Id"
+ }, {
+   "AttributeID": "Disp2IpAddr",
+   "AttributeName": "Disp2IpAddr"
+ }, {
+   "AttributeID": "Disp2LampHrs",
+   "AttributeName": "Disp2LampHrs"
+ }, {
+   "AttributeID": "Disp2Model",
+   "AttributeName": "Disp2Model"
+ }, {
+   "AttributeID": "Disp2OffLine",
+   "AttributeName": "Disp2OffLine"
+ }, {
+   "AttributeID": "Disp2PowerOn",
+   "AttributeName": "Disp2PowerOn"
+ }, {
+   "AttributeID": "Disp2ProjectorName",
+   "AttributeName": "Disp2ProjectorName"
+ }, {
+   "AttributeID": "Disp2Resolution",
+   "AttributeName": "Disp2Resolution"
+ }, {
+   "AttributeID": "Disp2Status",
+   "AttributeName": "Disp2Status"
+ }, {
+   "AttributeID": "Disp2Stolen",
+   "AttributeName": "Disp2Stolen"
+ }, {
+   "AttributeID": "Disp2Temp",
+   "AttributeName": "Disp2Temp"
+ }, {
+   "AttributeID": "Disp3ComErr",
+   "AttributeName": "Disp3ComErr"
+ }, {
+   "AttributeID": "Disp3Err",
+   "AttributeName": "Disp3Err"
+ }, {
+   "AttributeID": "Disp3FirmwareVer",
+   "AttributeName": "Disp3FirmwareVer"
+ }, {
+   "AttributeID": "Disp3Id",
+   "AttributeName": "Disp3Id"
+ }, {
+   "AttributeID": "Disp3IpAddr",
+   "AttributeName": "Disp3IpAddr"
+ }, {
+   "AttributeID": "Disp3LampHrs",
+   "AttributeName": "Disp3LampHrs"
+ }, {
+   "AttributeID": "Disp3Model",
+   "AttributeName": "Disp3Model"
+ }, {
+   "AttributeID": "Disp3OffLine",
+   "AttributeName": "Disp3OffLine"
+ }, {
+   "AttributeID": "Disp3PowerOn",
+   "AttributeName": "Disp3PowerOn"
+ }, {
+   "AttributeID": "Disp3ProjectorName",
+   "AttributeName": "Disp3ProjectorName"
+ }, {
+   "AttributeID": "Disp3Resolution",
+   "AttributeName": "Disp3Resolution"
+ }, {
+   "AttributeID": "Disp3Status",
+   "AttributeName": "Disp3Status"
+ }, {
+   "AttributeID": "Disp3Stolen",
+   "AttributeName": "Disp3Stolen"
+ }, {
+   "AttributeID": "Disp3Temp",
+   "AttributeName": "Disp3Temp"
+ }, {
+   "AttributeID": "DISPLAY_POWER",
+   "AttributeName": "Display Power"
+ }, {
+   "AttributeID": "DISPLAY_USAGE",
+   "AttributeName": "Display Usage"
+ }, {
+   "AttributeID": "Display1 Usage",
+   "AttributeName": "Display1 Usage"
+ }, {
+   "AttributeID": "DisplayPowerOff",
+   "AttributeName": "DisplayPowerOff"
+ }, {
+   "AttributeID": "Displays",
+   "AttributeName": "Displays"
+ }, {
+   "AttributeID": "Displays Configured",
+   "AttributeName": "Displays Configured"
+ }, {
+   "AttributeID": "DisplaysConfigured",
+   "AttributeName": "DisplaysConfigured"
+ }, {
+   "AttributeID": "DispOffLine",
+   "AttributeName": "DispOffLine"
+ }, {
+   "AttributeID": "DmpsVer",
+   "AttributeName": "DmpsVer"
+ }, {
+   "AttributeID": "DVD/VCR video sense",
+   "AttributeName": "DVD/VCR video sense"
+ }, {
+   "AttributeID": "Enable_Broadcast_Video",
+   "AttributeName": "Enable Broadcast Video"
+ }, {
+   "AttributeID": "ERROR_ALERT",
+   "AttributeName": "Error Alert"
+ }, {
+
+   "AttributeID": "ERROR_MESSAGE",
+   "AttributeName": "Error Message"
+ }, {
+   "AttributeID": "FREE_BUSY_STATUS",
+   "AttributeName": "Free Busy Status"
+ }, {
+   "AttributeID": "FREE_UNTIL",
+   "AttributeName": "Free Until"
+ }, {
+   "AttributeID": "GROUP_MEMBERSHIP",
+   "AttributeName": "Group Membership"
+ }, {
+   "AttributeID": "HELP_ALERT",
+   "AttributeName": "Help Alert"
+ }, {
+   "AttributeID": "HELP_MESSAGE",
+   "AttributeName": "Help Message"
+ }, {
+   "AttributeID": "INSTANT_MESSAGE",
+   "AttributeName": "Instant Message"
+ }, {
+   "AttributeID": "IPTV Video",
+   "AttributeName": "IPTV Video"
+ }, {
+   "AttributeID": "IptvVid",
+   "AttributeName": "IptvVid"
+ }, {
+   "AttributeID": "LAST_PUSH_EVENT",
+   "AttributeName": "Last Push Event"
+ }, {
+   "AttributeID": "LOG_TEXT",
+   "AttributeName": "Log Text"
+ }, {
+   "AttributeID": "M1GrpCh",
+   "AttributeName": "M1GrpCh"
+ }, {
+   "AttributeID": "M1GrpChan",
+   "AttributeName": "M1GrpChan"
+ }, {
+   "AttributeID": "M1LT1.5Hr",
+   "AttributeName": "M1LT1.5Hr"
+ }, {
+   "AttributeID": "M1LT3Hr",
+   "AttributeName": "M1LT3Hr"
+ }, {
+   "AttributeID": "M1LT5Hr",
+   "AttributeName": "M1LT5Hr"
+ }, {
+   "AttributeID": "M1OffDateTime",
+   "AttributeName": "M1OffDateTime"
+ }, {
+   "AttributeID": "M1OffDT",
+   "AttributeName": "M1OffDT"
+ }, {
+   "AttributeID": "M1On",
+   "AttributeName": "M1On"
+ }, {
+   "AttributeID": "M1OnDateTime",
+   "AttributeName": "M1OnDateTime"
+ }, {
+   "AttributeID": "M1OnDT",
+   "AttributeName": "M1OnDT"
+ }, {
+   "AttributeID": "M1RFInt",
+   "AttributeName": "M1RFInt"
+ }, {
+   "AttributeID": "M1RfPower",
+   "AttributeName": "M1RfPower"
+ }, {
+   "AttributeID": "M1RfPwr",
+   "AttributeName": "M1RfPwr"
+ }, {
+   "AttributeID": "M1Status",
+   "AttributeName": "M1Status"
+ }, {
+   "AttributeID": "M2GrpCh",
+   "AttributeName": "M2GrpCh"
+ }, {
+   "AttributeID": "M2GrpChan",
+   "AttributeName": "M2GrpChan"
+ }, {
+   "AttributeID": "M2LT1.5Hr",
+   "AttributeName": "M2LT1.5Hr"
+ }, {
+   "AttributeID": "M2LT3Hr",
+   "AttributeName": "M2LT3Hr"
+ }, {
+   "AttributeID": "M2LT5Hr",
+   "AttributeName": "M2LT5Hr"
+ }, {
+   "AttributeID": "M2OffDateTime",
+   "AttributeName": "M2OffDateTime"
+ }, {
+   "AttributeID": "M2OffDT",
+   "AttributeName": "M2OffDT"
+ }, {
+   "AttributeID": "M2On",
+   "AttributeName": "M2On"
+ }, {
+   "AttributeID": "M2OnDateTime",
+   "AttributeName": "M2OnDateTime"
+ }, {
+   "AttributeID": "M2OnDT",
+   "AttributeName": "M2OnDT"
+ }, {
+   "AttributeID": "M2RFInt",
+   "AttributeName": "M2RFInt"
+ }, {
+   "AttributeID": "M2RfPower",
+   "AttributeName": "M2RfPower"
+ }, {
+   "AttributeID": "M2RfPwr",
+   "AttributeName": "M2RfPwr"
+ }, {
+   "AttributeID": "M2Status",
+   "AttributeName": "M2Status"
+ }, {
+   "AttributeID": "MASTER_ROOM_AUDIO_NUM",
+   "AttributeName": "Master Room Audio Number"
+ }, {
+   "AttributeID": "MASTER_ROOM_NAME",
+   "AttributeName": "Master Room Name"
+ }, {
+   "AttributeID": "MASTER_ROOM_VIDEO_IP",
+   "AttributeName": "Master Room Video IP"
+ }, {
+   "AttributeID": "MASTER_ROOM_VIDEO_NUM",
+   "AttributeName": "Master Room Video Number"
+ }, {
+   "AttributeID": "Mic1LT1.5Hr",
+   "AttributeName": "Mic1LT1.5Hr"
+ }, {
+   "AttributeID": "Mic1LT3Hr",
+   "AttributeName": "Mic1LT3Hr"
+ }, {
+   "AttributeID": "Mic1LT5Hr",
+   "AttributeName": "Mic1LT5Hr"
+ }, {
+   "AttributeID": "Mic1On",
+   "AttributeName": "Mic1On"
+ }, {
+   "AttributeID": "Mic1RFI",
+   "AttributeName": "Mic1RFI"
+ }, {
+   "AttributeID": "Mic1Status",
+   "AttributeName": "Mic1Status"
+ }, {
+   "AttributeID": "Mic2LT1.5Hr",
+   "AttributeName": "Mic2LT1.5Hr"
+ }, {
+   "AttributeID": "Mic2LT3Hr",
+   "AttributeName": "Mic2LT3Hr"
+ }, {
+   "AttributeID": "Mic2LT5Hr",
+   "AttributeName": "Mic2LT5Hr"
+ }, {
+   "AttributeID": "Mic2On",
+   "AttributeName": "Mic2On"
+ }, {
+   "AttributeID": "Mic2RFI",
+   "AttributeName": "Mic2RFI"
+ }, {
+   "AttributeID": "Mic2Status",
+   "AttributeName": "Mic2Status"
+ }, {
+   "AttributeID": "Missing Monitor",
+   "AttributeName": "Missing Monitor"
+ }, {
+   "AttributeID": "MMCDETECTED",
+   "AttributeName": "MMC Detected"
+ }, {
+   "AttributeID": "MMCSPACELOW",
+   "AttributeName": "MMC Space Low"
+ }, {
+   "AttributeID": "MMCTIMELEFT",
+   "AttributeName": "MMC Time Left"
+ }, {
+   "AttributeID": "Mode",
+   "AttributeName": "Mode"
+ }, {
+   "AttributeID": "Model and Ver",
+   "AttributeName": "Model and Ver"
+ }, {
+   "AttributeID": "ModeOk",
+   "AttributeName": "ModeOk"
+ }, {
+   "AttributeID": "MSG_BROADCAST_ENABLED",
+   "AttributeName": "Message Broadcast Enabled"
+ }, {
+   "AttributeID": "NEXTMEETINGNAME",
+   "AttributeName": "Next Meeting Name"
+ }, {
+   "AttributeID": "NEXTMEETINGORGANIZER",
+   "AttributeName": "Next Meeting Organizer"
+ }, {
+   "AttributeID": "NEXTMEETINGTIME",
+   "AttributeName": "Next Meeting Time"
+ }, {
+   "AttributeID": "ONLINE_STATUS",
+   "AttributeName": "Online Status"
+ }, {
+   "AttributeID": "Open Cabinet",
+   "AttributeName": "Open Cabinet"
+ }, {
+   "AttributeID": "Open Podium",
+   "AttributeName": "Open Podium"
+ }, {
+   "AttributeID": "OpenAllShades",
+   "AttributeName": "Open All Shades"
+ }, {
+   "AttributeID": "OS_VERSION",
+   "AttributeName": "OS Version"
+ }, {
+   "AttributeID": "PAUSE",
+   "AttributeName": "Pause"
+ }, {
+   "AttributeID": "PROGRAM_VERSION",
+   "AttributeName": "Program Version"
+ }, {
+   "AttributeID": "ProgramCompileDate",
+   "AttributeName": "ProgramCompileDate"
+ }, {
+   "AttributeID": "ProgramName",
+   "AttributeName": "ProgramName"
+ }, {
+   "AttributeID": "Proj Temp",
+   "AttributeName": "Proj Temp"
+ }, {
+   "AttributeID": "ProjTemp",
+   "AttributeName": "ProjTemp"
+ }, {
+   "AttributeID": "PUSH_MODEL_SUPPORTED",
+   "AttributeName": "Push Model Supported"
+ }, {
+   "AttributeID": "PUSH_REGISTERED",
+   "AttributeName": "Push Registered"
+ }, {
+   "AttributeID": "PUSH_RESPONSES",
+   "AttributeName": "Push Responses"
+ }, {
+   "AttributeID": "RECORD",
+   "AttributeName": "Record"
+ }, {
+   "AttributeID": "RECORDMODE",
+   "AttributeName": "Record Mode"
+ }, {
+   "AttributeID": "RECORDSTATE",
+   "AttributeName": "Record State"
+ }, {
+   "AttributeID": "REMOTE_START_MEETING",
+   "AttributeName": "Remote Start Meeting"
+ }, {
+   "AttributeID": "ROOM_OCCUPANCY_INFO",
+   "AttributeName": "Room Occupancy Information"
+ }, {
+   "AttributeID": "ROOM_OCCUPIED",
+   "AttributeName": "Room Occupied"
+ }, {
+   "AttributeID": "ROOM_UNOCCUPIED",
+   "AttributeName": "Room Unoccupied"
+ }, {
+   "AttributeID": "ScenesAllOff",
+   "AttributeName": "Scenes All Off"
+ }, {
+   "AttributeID": "Security Status",
+   "AttributeName": "Security Status"
+ }, {
+   "AttributeID": "SelBlank",
+   "AttributeName": "SelBlank"
+ }, {
+   "AttributeID": "SLAVE_ROOM",
+   "AttributeName": "Slave Room"
+ }, {
+   "AttributeID": "Stolen Display",
+   "AttributeName": "Stolen Display"
+ }, {
+   "AttributeID": "STOP",
+   "AttributeName": "Stop"
+ }, {
+   "AttributeID": "STORAGEDEFAULTLOCATION",
+   "AttributeName": "Storage Default Location"
+ }, {
+   "AttributeID": "SYSTEM_POWER",
+   "AttributeName": "System Power"
+ }, {
+   "AttributeID": "SystemPowerOff",
+   "AttributeName": "SystemPowerOff"
+ }, {
+   "AttributeID": "Tp1ProjectCompileDate",
+   "AttributeName": "Tp1ProjectCompileDate"
+ }, {
+   "AttributeID": "Tp1ProjectName",
+   "AttributeName": "Tp1ProjectName"
+ }, {
+   "AttributeID": "Tp1Ver",
+   "AttributeName": "Tp1Ver"
+ }, {
+   "AttributeID": "Tp2ProjectCompileDate",
+   "AttributeName": "Tp2ProjectCompileDate"
+ }, {
+   "AttributeID": "Tp2ProjectName",
+   "AttributeName": "Tp2ProjectName"
+ }, {
+   "AttributeID": "Tp2Ver",
+   "AttributeName": "Tp2Ver"
+ }, {
+   "AttributeID": "UPLOADPASSWORD1",
+   "AttributeName": "Upload Password 1"
+ }, {
+   "AttributeID": "UPLOADPATH1",
+   "AttributeName": "Upload Path 1"
+ }, {
+   "AttributeID": "UPLOADSTATE",
+   "AttributeName": "Upload State"
+ }, {
+   "AttributeID": "UPLOADUSERNAME1",
+   "AttributeName": "Upload Username 1"
+ }, {
+   "AttributeID": "USB1DETECTED",
+   "AttributeName": "USB 1 Detected"
+ }, {
+   "AttributeID": "USB1SPACELOW",
+   "AttributeName": "USB 1 Space Low"
+ }, {
+   "AttributeID": "USB1TIMELEFT",
+   "AttributeName": "USB 1 Time Left"
+ }, {
+   "AttributeID": "USB2DETECTED",
+   "AttributeName": "USB 2 Detected"
+ }, {
+   "AttributeID": "USB2SPACELOW",
+   "AttributeName": "USB 2 Space Low"
+ }, {
+   "AttributeID": "USB2TIMELEFT",
+   "AttributeName": "USB 2 Time Left"
+ }, {
+   "AttributeID": "Valid Mode",
+   "AttributeName": "Valid Mode"
+ }, {
+   "AttributeID": "Wls",
+   "AttributeName": "Wls"
+ }, {
+   "AttributeID": "WlsAlert",
+   "AttributeName": "WlsAlert"
+ }, {
+   "AttributeID": "WlsMicAlert",
+   "AttributeName": "WlsMicAlert"
+ }, {
+   "AttributeID": "WlsMicOnline",
+   "AttributeName": "WlsMicOnline"
+ }, {
+   "AttributeID": "WlsOnline",
+   "AttributeName": "WlsOnline"
+ }]
