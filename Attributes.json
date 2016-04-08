@@ -1,4 +1,4 @@
- [{
+[{
    "AttributeID": "1AppleTv",
    "AttributeName": "1AppleTv"
  }, {
@@ -751,7 +751,7 @@
    "AttributeName": "Storage Default Location"
  }, {
    "AttributeID": "SYSTEM_POWER",
-   "AttributeName": "System Power"
+   "AttributeName": "System Power On"
  }, {
    "AttributeID": "SystemPowerOff",
    "AttributeName": "SystemPowerOff"

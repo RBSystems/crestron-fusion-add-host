@@ -64,7 +64,6 @@ func importConfig(configPath string) Config {
 
 	fmt.Printf("\n%s\n", f)
 
-	fmt.Printf("Done. Configuration data: \n %+v \n", configurationData)
 	return configurationData
 }
 
@@ -248,6 +247,8 @@ func sendRoom(room RoomInfo, config Config, method string) {
 	b, err := json.Marshal(roomToSend)
 	check(err)
 
+	//fmt.Printf("Sending: \n %s \n", b)
+
 	client := &http.Client{}
 
 	req, err := http.NewRequest(method, config.FusionRoomsAddress, bytes.NewBuffer(b))
@@ -331,7 +332,6 @@ func deleteAllProcs(rooms []RoomInfo, address string) {
 }
 
 func addAllRooms(config Config, rooms []RoomInfo) {
-
 	count := 0
 
 	for k := range rooms {
@@ -435,7 +435,7 @@ func getJoinNumbersFromSMW(config Config, info []FusionAttributeInfo) []Signal {
 
 func main() {
 	var ConfigFileLocation = flag.String("config", "./config.json", "The locaton of the config file.")
-	var operation = flag.String("op", "T", "Define the operation desired. 'A' = add rooms, 'T' = test, 'D' = delete")
+	var operation = flag.String("op", "T", "Define the operation desired. 'A' = add rooms, 'T' = test, 'D' = delete, 'S' = build signal table")
 	var roomSource = flag.Int("src", 0, "The source of the room info to import into Fusion. 0 for elastic search. 1 for CSV. Default 0.")
 
 	var roomInfo []RoomInfo
@@ -457,8 +457,10 @@ func main() {
 	} else if strings.EqualFold("D", *operation) {
 		rooms := getRoomsFromFusion(config.FusionRoomsAddress)
 		deleteAllRooms(rooms, config.FusionRoomsAddress)
-	} else if strings.EqualFold("T", *operation) {
+	} else if strings.EqualFold("S", *operation) {
 		signals := getJoinNumbersFromSMW(config, getAttributesFusion(config.FusionAttributesAddress))
 		writeSignalFile(config, signals)
+	} else if strings.EqualFold("T", *operation) {
+		fmt.Printf("Attributes: %s \n", getAttributesFusion(config.FusionAttributesAddress))
 	}
 }
