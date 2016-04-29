@@ -1,6 +1,6 @@
 package main
 
-//RoomInfo is Struct to be used when unmarshalling items from a csv document
+// RoomInfo is Struct to be used when unmarshalling items from a csv document
 type RoomInfo struct {
 	IPAddress   string
 	Hostname    string
@@ -8,29 +8,29 @@ type RoomInfo struct {
 	Coordinates string
 }
 
-//Signal is a struct built to reflect as signal item in JSON
+// Signal is a struct built to reflect as signal item in JSON
 type Signal struct {
-	AttributeName   string
-	AttributeID     string
+	AttributeName   string // HAS to come from Fusion (created through black magic which is why we autodiscover rooms as the first step)
+	AttributeID     string // HAS to come from Fusion (created through black magic which is why we autodiscover rooms as the first step)
 	AttributeType   int
 	JoinNumber      int
 	LogicalOperator int
 }
 
-//Symbol is the struct built to reflect the Symbols item in JSON
+// Symbol is the struct built to reflect the Symbols item in JSON
 type Symbol struct {
 	ConnectInfo   string
-	IPID          int
-	SymbolName    string
-	ProcessorID   string
-	ProcessorName string
-	Port          int
-	SecurePort    int
-	Version       string
-	Signals       []Signal
+	IPID          int      // IPID of the Fusion Room symbol; always going to be 10 (currently)
+	SymbolName    string   // Whatever you want it to be but must be unique to the symbol (currently named after the DMPS)
+	ProcessorID   string   // Must be IP address of processor (see in-code comments)
+	ProcessorName string   // Can be whatever you want but must be unique to the symbol (currently hostname of the DMPS)
+	Port          int      // The port we want to communicate over (41795)
+	SecurePort    int      // We don't currently use this but it has to be here "or Fusion gets all uppity"
+	Version       string   // Has to be here "or Fusion gets all uppity"
+	Signals       []Signal // The list of signals pertaining to the symbol
 }
 
-//Room represents a room object in Fusion
+// Room represents a room object in Fusion
 type Room struct {
 	RoomName              string
 	Description           string
@@ -43,18 +43,18 @@ type Room struct {
 	GroupwareProviderType string
 }
 
-//ElasticSearchResponse Object to reflect an elastic search response
+// ElasticSearchResponse Object to reflect an elastic search response
 type ElasticSearchResponse struct {
 	Hits ElasticSearchHitWrapper
 }
 
-//ElasticSearchHitWrapper wrapper for hit object
+// ElasticSearchHitWrapper wrapper for hit object
 type ElasticSearchHitWrapper struct {
 	Total int
 	Hits  []ElasitcSearchHit
 }
 
-//ElasitcSearchHit is one 'hit' in the system - basically each different item returned by the query.
+// ElasitcSearchHit is one 'hit' in the system - basically each different item returned by the query.
 type ElasitcSearchHit struct {
 	Index  string
 	Type   string
@@ -63,8 +63,7 @@ type ElasitcSearchHit struct {
 	Source ElasticSearchConfigSource `json:"_source"`
 }
 
-//ElasticSearchConfigSource is the source subdirectory of the hit - basically what we're actually
-//putting into the config index.
+// ElasticSearchConfigSource is the source subdirectory of the hit - basically what we're actually putting into the config index.
 type ElasticSearchConfigSource struct {
 	MacAddress  string
 	Description string
@@ -103,8 +102,7 @@ type Config struct {
 	SecurePort                     int
 }
 
-//DeleteProcInfo is a struct representing the payload necessary to send the delete
-//processor command.
+//DeleteProcInfo is a struct representing the payload necessary to send the delete processor command
 type DeleteProcInfo struct {
 	ID         string `json:"id"`
 	Name       string `json:"name"`
