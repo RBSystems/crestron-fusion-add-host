@@ -15,5 +15,5 @@
   "FusionAttributesAddress": "http://lazyeye.byu.edu/fusion/apiservice/attributes/",
   "FusionDeleteObjectHackAddress": "http://lazyeye.byu.edu/Fusion/WebClient/Setup/asmx/MainPg.asmx/DeleteObject",
   "CSVRoomInfoLocation": "./rooms.csv",
-  "SMWLocation": "./regexTester.txt"
+  "SMWLocation": "./regex-tester.txt"
 }
