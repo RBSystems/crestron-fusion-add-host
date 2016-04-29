@@ -18,3 +18,5 @@ Steps for Populating Fusion:
 1. Open the `.txt` file and search-and-replace "System Power On" with "System Power"
 1. Use `crestron-fusion-add-host` to pull attributes from Fusion and save them to `attributes.json` and nab information from the `.smw` file to populate `signals.json` via `crestron-fusion-add-host -op S`
 1. Use `crestron-fusion-add-host` to add the rooms into Fusion pulling room inforat `crestron-fusion-add-host -op A`
+
+![Whiteboard Picture](whiteboard.jpg)
